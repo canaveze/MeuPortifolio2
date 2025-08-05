@@ -992,3 +992,48 @@ footer {
         width: 280px;
     }
 }
+
+/* Seletor de Idioma dentro da navegação - Versão para imagens */
+nav ul li.lang-item {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.language-switcher .flag {
+    width: 24px; /* Tamanho fixo para as bandeiras */
+    height: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.3s ease;
+    filter: grayscale(100%);
+    object-fit: cover; /* Garante que a imagem mantenha proporções */
+    border-radius: 50%; /* Opcional: deixa as bandeiras redondas */
+}
+
+.language-switcher .lang-option.active .flag {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.language-switcher .lang-option:hover .flag {
+    transform: scale(1.1);
+}
+
+/* Ajustes para mobile */
+@media (max-width: 768px) {
+    nav ul li.lang-item {
+        margin: 15px 0;
+        justify-content: center;
+    }
+    
+    .language-switcher .flag {
+        width: 20px;
+        height: 20px;
+    }
+}

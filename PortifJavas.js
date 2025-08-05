@@ -1,4 +1,109 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Traduções
+    const translations = {
+        'pt-BR': {
+            'home': 'Início',
+            'about': 'Sobre',
+            'projects': 'Projetos',
+            'volunteer': 'Voluntariados',
+            'contact': 'Contato',
+            'heroTitle': 'Olá, eu sou a <span>Beatriz Canaveze</span>',
+            'heroSubtitle': 'Estudante de Engenharia de Computação',
+            'heroText': 'Apaixonada por tecnologia, estou sempre em busca de aprender para inovar.',
+            'heroButton': 'Ver meus projetos',
+            'aboutTitle': 'Sobre <span>Mim</span>',
+            'aboutWho': 'Quem sou eu?',
+            'aboutText1': 'Estudante de Engenharia de Computação e apaixonada por tecnologia. Gosto de criar soluções práticas que façam a diferença no dia a dia das pessoas. Tenho experiência com desenvolvimento web, Power Platform, Salesforce e projetos de inovação.',
+            'aboutText2': 'Estou sempre em busca de aprender mais e aplicar meus conhecimentos de forma criativa e útil.',
+            'skillsTitle': 'Minhas Habilidades',
+            'projectsTitle': 'Meus <span>Projetos</span>',
+            'volunteerTitle': 'Meus <span>Voluntariados</span>',
+            'contactTitle': 'Vamos <span>Conversar</span>',
+            'contactText': 'Estou sempre aberta a novas oportunidades e colaborações. Se você tem um projeto em mente ou quer bater um papo, me envie uma mensagem!',
+            'formName': 'Nome',
+            'formEmail': 'Email',
+            'formMessage': 'Mensagem',
+            'formButton': 'Enviar Mensagem',
+            'timelineTitle': 'Histórico de Carreira'
+        },
+        'en': {
+            'home': 'Home',
+            'about': 'About',
+            'projects': 'Projects',
+            'volunteer': 'Volunteering',
+            'contact': 'Contact',
+            'heroTitle': 'Hello, I am <span>Beatriz Canaveze</span>',
+            'heroSubtitle': 'Computer Engineering Student',
+            'heroText': 'Passionate about technology, I am always looking to learn in order to innovate.',
+            'heroButton': 'View my projects',
+            'aboutTitle': 'About <span>Me</span>',
+            'aboutWho': 'Who am I?',
+            'aboutText1': 'Computer Engineering student and technology enthusiast. I enjoy creating practical solutions that make a difference in people\'s daily lives. I have experience with web development, Power Platform, Salesforce and innovation projects.',
+            'aboutText2': 'I\'m always looking to learn more and apply my knowledge in creative and useful ways.',
+            'skillsTitle': 'My Skills',
+            'projectsTitle': 'My <span>Projects</span>',
+            'volunteerTitle': 'My <span>Volunteering</span>',
+            'contactTitle': 'Let\'s <span>Talk</span>',
+            'contactText': 'I\'m always open to new opportunities and collaborations. If you have a project in mind or just want to chat, send me a message!',
+            'formName': 'Name',
+            'formEmail': 'Email',
+            'formMessage': 'Message',
+            'formButton': 'Send Message',
+            'timelineTitle': 'Career History'
+        }
+    };
+
+    // Função para mudar o idioma
+    function changeLanguage(lang) {
+        // Atualizar botões de idioma
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.classList.remove('active');
+            if (option.dataset.lang === lang) {
+                option.classList.add('active');
+            }
+        });
+
+        // Atualizar conteúdo
+        const content = translations[lang];
+        document.querySelector('nav ul li a[href="#home"]').textContent = content['home'];
+        document.querySelector('nav ul li a[href="#about"]').textContent = content['about'];
+        document.querySelector('nav ul li a[href="#projects"]').textContent = content['projects'];
+        document.querySelector('nav ul li a[href="#volunteer"]').textContent = content['volunteer'];
+        document.querySelector('nav ul li a[href="#contact"]').textContent = content['contact'];
+        
+        document.querySelector('.hero-content h1').innerHTML = content['heroTitle'];
+        document.querySelector('.hero-content .typewriter').textContent = content['heroSubtitle'];
+        document.querySelector('.hero-content p:not(.typewriter)').textContent = content['heroText'];
+        document.querySelector('.hero-content .cta-button').textContent = content['heroButton'];
+        
+        document.querySelector('.about .section-title').innerHTML = content['aboutTitle'];
+        document.querySelector('.about-text h3').textContent = content['aboutWho'];
+        document.querySelectorAll('.about-text p')[0].textContent = content['aboutText1'];
+        document.querySelectorAll('.about-text p')[1].textContent = content['aboutText2'];
+        document.querySelector('.about-text h3:nth-of-type(2)').textContent = content['skillsTitle'];
+        
+        document.querySelector('.projects .section-title').innerHTML = content['projectsTitle'];
+        document.querySelector('.volunteer .section-title').innerHTML = content['volunteerTitle'];
+        
+        document.querySelector('.contact .section-title').innerHTML = content['contactTitle'];
+        document.querySelector('.contact p').textContent = content['contactText'];
+        document.querySelector('.contact-form label[for="name"]').textContent = content['formName'];
+        document.querySelector('.contact-form label[for="email"]').textContent = content['formEmail'];
+        document.querySelector('.contact-form label[for="message"]').textContent = content['formMessage'];
+        document.querySelector('.contact-form .submit-btn').textContent = content['formButton'];
+        
+        document.querySelector('.timeline-header h3').textContent = content['timelineTitle'];
+    }
+
+    // Event listeners para os botões de idioma
+    document.querySelectorAll('.lang-option').forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.preventDefault();
+            const lang = this.dataset.lang;
+            changeLanguage(lang);
+        });
+    });
+
     // Menu Mobile
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
@@ -135,43 +240,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Formulário de contato (simulação)
-const contactForm = document.querySelector('.contact-form');
+    const contactForm = document.querySelector('.contact-form');
 
-contactForm.addEventListener('submit', (e) => {
-    // e.preventDefault(); ← REMOVA ISSO
+    contactForm.addEventListener('submit', (e) => {
+        // e.preventDefault(); ← REMOVA ISSO
 
-    // Isso será substituído pelo envio real do FormSubmit
-    // alert('Obrigado pela sua mensagem! Entrarei em contato em breve.');
-    // contactForm.reset();
-});
-
-// Timeline de Empregos
-// Timeline de Empregos
-const jobsToggle = document.querySelector('.jobs-toggle');
-const jobsTimeline = document.querySelector('.jobs-timeline');
-const closeTimeline = document.querySelector('.close-timeline');
-
-if (jobsToggle && jobsTimeline) {
-    jobsToggle.addEventListener('click', () => {
-        jobsTimeline.classList.add('active');
-        jobsToggle.classList.add('hidden'); // Esconde o botão
-        document.body.style.overflow = 'hidden';
+        // Isso será substituído pelo envio real do FormSubmit
+        // alert('Obrigado pela sua mensagem! Entrarei em contato em breve.');
+        // contactForm.reset();
     });
-    
-    closeTimeline.addEventListener('click', () => {
-        jobsTimeline.classList.remove('active');
-        jobsToggle.classList.remove('hidden'); // Mostra o botão
-        document.body.style.overflow = '';
-    });
-    
-    // Fechar ao clicar fora
-    document.addEventListener('click', (e) => {
-        if (!jobsTimeline.contains(e.target) && e.target !== jobsToggle) {
+
+    // Timeline de Empregos
+    const jobsToggle = document.querySelector('.jobs-toggle');
+    const jobsTimeline = document.querySelector('.jobs-timeline');
+    const closeTimeline = document.querySelector('.close-timeline');
+
+    if (jobsToggle && jobsTimeline) {
+        jobsToggle.addEventListener('click', () => {
+            jobsTimeline.classList.add('active');
+            jobsToggle.classList.add('hidden'); // Esconde o botão
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeTimeline.addEventListener('click', () => {
             jobsTimeline.classList.remove('active');
             jobsToggle.classList.remove('hidden'); // Mostra o botão
             document.body.style.overflow = '';
-        }
-    });
-}
-
+        });
+        
+        // Fechar ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!jobsTimeline.contains(e.target) && e.target !== jobsToggle) {
+                jobsTimeline.classList.remove('active');
+                jobsToggle.classList.remove('hidden'); // Mostra o botão
+                document.body.style.overflow = '';
+            }
+        });
+    }
 });
