@@ -359,6 +359,24 @@ nav ul li a:hover::after {
     height: calc(100% + 40px);
 }
 
+.trailhead-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* espaço entre imagem e texto */
+    color: var(--dark); /* ou outra cor visível */
+    text-decoration: none;
+}
+
+.trailhead-link a:hover {
+    color: var(--secondary); /* muda a cor no hover */
+}
+
+.trailhead-link img {
+    width: 18px;
+    height: auto;
+    vertical-align: middle;
+}
+
 /* Voluntariado */
 .volunteer {
     padding: 100px 10%;

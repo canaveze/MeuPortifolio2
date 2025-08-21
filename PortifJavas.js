@@ -51,8 +51,44 @@ const translations = {
         'job3Desc': 'Estágio | Facens: Laboratório de Inovação Social',
         'job4Title': 'Professora de Inglês',
         'job4Desc': 'CLT | CNA Idiomas',
-        'footerText': '&copy; <span id="year"></span> Beatriz Canaveze. Todos os direitos reservados.'
-    },
+        'footerText': '&copy; <span id="year"></span> Beatriz Canaveze. Todos os direitos reservados.',
+        'tagADAS': 'ADAS',
+        'tagECU': 'ECU',
+        'tagCANBus': 'CAN Bus',
+        'tagHILSIL': 'HIL/SIL',
+        'tagPython': 'Python',
+        'tagBOCA': 'BOCA',
+        'tagLinux': 'Linux',
+        'tagHTML': 'HTML',
+        'tagCSS': 'CSS',
+        'tagJavascript': 'Javascript',
+        'tagWave': 'Wave',
+        'tagJson': 'Json',
+        'project5Title': 'Conversor de Moeda',
+        'project5Desc': 'Site para converter 5 tipos de moedas, com valores em tempo real',
+
+        
+        // Tags dos Voluntariados
+        'tagMicrosoft': 'Microsoft',
+        'tagRedesSociais': 'Redes Sociais',
+        'tagDidatica': 'Didática',
+        'tagGestao': 'Gestão',
+        'tagTreinamento': 'Treinamento',
+        'tagImpressao3D': 'Impressão 3D',
+        'tagModelagem': 'Modelagem',
+        'tagOrganizacao': 'Organização',
+        'tagPolitica': 'Política',
+        'tagEstudo': 'Estudo',
+        'tagCozinha': 'Cozinha',
+        'tagLimpeza': 'Limpeza',
+        'tagIngles': 'Inglês',
+        //formaçao academica
+        'FormacaoAcademica': 'Formação Acadêmica',
+        'facens': 'Centro Universitário Facens',
+        'facensDesc': 'Engenharia da Computação | 2023 - 2027 | Noite', // ← CORRIGIDO
+        'trailheadDesc': 'Estudos do Salesforce |'
+
+        },
     'en': {
         'home': 'Home',
         'about': 'About',
@@ -103,102 +139,220 @@ const translations = {
         'job3Desc': 'Internship | Facens: Social Innovation Lab',
         'job4Title': 'English Teacher',
         'job4Desc': 'CLT | CNA Language School',
-        'footerText': '&copy; <span id="year"></span> Beatriz Canaveze. All rights reserved.'
-    }
+        'footerText': '&copy; <span id="year"></span> Beatriz Canaveze. All rights reserved.',
+        'tagADAS': 'ADAS',
+        'tagECU': 'ECU',
+        'tagCANBus': 'CAN Bus',
+        'tagHILSIL': 'HIL/SIL',
+        'tagPython': 'Python',
+        'tagBOCA': 'BOCA',
+        'tagLinux': 'Linux',
+        'tagHTML': 'HTML',
+        'tagCSS': 'CSS',
+        'tagJavascript': 'Javascript',
+        'tagWave': 'Wave',
+        'tagJson': 'Json',
+        'tagMicrosoft': 'Microsoft',
+        'tagRedesSociais': 'Social Media',
+        'tagDidatica': 'Teaching',
+        'tagGestao': 'Manager',
+        'tagTreinamento': 'Training',
+        'tagImpressao3D': '3D Printing',
+        'tagModelagem': 'Modeling',
+        'tagOrganizacao': 'Organization',
+        'tagPolitica': 'Politics',
+        'tagEstudo': 'Study',
+        'tagCozinha': 'Kitchen',
+        'tagLimpeza': 'Cleaning',
+        'tagIngles': 'English',
+        //formacao academica
+        'FormacaoAcademica': 'Academic Education',
+        'facens': 'Facens University Center',
+        'facensDesc': 'Computer Engineering | 2023 - 2027 | Night',
+        'trailheadDesc': 'Salesforce Studies |',
+
+        'project5Title': 'Currency Converter',
+        'project5Desc': 'Website to convert 5 types of currencies with real-time values',
+    
+        }
 };
 
-// Função para mudar o idioma
-function changeLanguage(lang) {
-    // Atualizar botões de idioma
-    document.querySelectorAll('.lang-option').forEach(option => {
-        option.classList.remove('active');
-        if (option.dataset.lang === lang) {
-            option.classList.add('active');
-        }
-    });
+    // Adicionar identificadores únicos para cada tag
+    function initializeTags() {
+        // Para tags de projetos
+        document.querySelectorAll('.project-tags .tag').forEach((tag, index) => {
+            tag.setAttribute('data-tag-id', `project-tag-${index}`);
+        });
+        
+        // Para tags de voluntariados
+        document.querySelectorAll('.volunteer-tags .tag').forEach((tag, index) => {
+            tag.setAttribute('data-tag-id', `volunteer-tag-${index}`);
+        });
+    }
 
-    // Atualizar conteúdo
-    const content = translations[lang];
-    
-    // Navegação
-    document.querySelector('nav ul li a[href="#home"]').textContent = content['home'];
-    document.querySelector('nav ul li a[href="#about"]').textContent = content['about'];
-    document.querySelector('nav ul li a[href="#projects"]').textContent = content['projects'];
-    document.querySelector('nav ul li a[href="#volunteer"]').textContent = content['volunteer'];
-    document.querySelector('nav ul li a[href="#contact"]').textContent = content['contact'];
-    
-    // Hero Section
-    document.querySelector('.hero-content h1').innerHTML = content['heroTitle'];
-    document.querySelector('.hero-content .typewriter').textContent = content['heroSubtitle'];
-    document.querySelector('.hero-content p:not(.typewriter)').textContent = content['heroText'];
-    document.querySelector('.hero-content .cta-button').textContent = content['heroButton'];
-    
-    // Sobre Mim
-    document.querySelector('.about .section-title').innerHTML = content['aboutTitle'];
-    document.querySelector('.about-text h3').textContent = content['aboutWho'];
-    document.querySelectorAll('.about-text p')[0].textContent = content['aboutText1'];
-    document.querySelectorAll('.about-text p')[1].textContent = content['aboutText2'];
-    document.querySelector('.about-text h3:nth-of-type(2)').textContent = content['skillsTitle'];
-    
-    // Projetos
-    document.querySelector('.projects .section-title').innerHTML = content['projectsTitle'];
-    
-    // Atualizar títulos e descrições dos projetos
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, index) => {
-        const titleElement = card.querySelector('h3');
-        const descElement = card.querySelector('p');
+    // Função para traduzir tags baseada em seus IDs
+    function translateTags(lang) {
+        const content = translations[lang];
         
-        if (titleElement && descElement) {
-            titleElement.textContent = content[`project${index+1}Title`];
-            descElement.textContent = content[`project${index+1}Desc`];
-        }
-    });
-    
-    // Voluntariados
-    document.querySelector('.volunteer .section-title').innerHTML = content['volunteerTitle'];
-    
-    // Atualizar títulos e descrições dos voluntariados
-    const volunteerCards = document.querySelectorAll('.volunteer-card');
-    volunteerCards.forEach((card, index) => {
-        const titleElement = card.querySelector('h3');
-        const descElement = card.querySelector('p');
+        // Mapeamento dos IDs das tags para as chaves de tradução
+        const tagMappings = {
+            // Tags dos projetos
+            'project-tag-0': 'tagADAS',
+            'project-tag-1': 'tagECU',
+            'project-tag-2': 'tagCANBus',
+            'project-tag-3': 'tagHILSIL',
+            'project-tag-4': 'tagPython',
+            'project-tag-5': 'tagBOCA',
+            'project-tag-6': 'tagLinux',
+            'project-tag-7': 'tagHTML',
+            'project-tag-8': 'tagCSS',
+            'project-tag-9': 'tagJavascript',
+            'project-tag-10': 'tagWave',
+            'project-tag-11': 'tagJson',
+            'project-tag-12': 'tagPython',
+            'project-tag-13': 'tagWave',    
+            'project-tag-14': 'tagJson',   
+            
+            // Tags dos voluntariados
+            'volunteer-tag-0': 'tagMicrosoft',
+            'volunteer-tag-1': 'tagRedesSociais',
+            'volunteer-tag-2': 'tagDidatica',
+            'volunteer-tag-3': 'tagDidatica',
+            'volunteer-tag-4': 'tagGestao',
+            'volunteer-tag-5': 'tagTreinamento',
+            'volunteer-tag-6': 'tagImpressao3D',
+            'volunteer-tag-7': 'tagModelagem',
+            'volunteer-tag-8': 'tagGestao',
+            'volunteer-tag-9': 'tagOrganizacao',
+            'volunteer-tag-10': 'tagPolitica',
+            'volunteer-tag-11': 'tagEstudo',
+            'volunteer-tag-12': 'tagCozinha',
+            'volunteer-tag-13': 'tagLimpeza',
+            'volunteer-tag-14': 'tagIngles'
+        };
         
-        if (titleElement && descElement) {
-            titleElement.textContent = content[`volunteer${index+1}Title`];
-            descElement.textContent = content[`volunteer${index+1}Desc`];
-        }
-    });
-    
-    // Contato
-    document.querySelector('.contact .section-title').innerHTML = content['contactTitle'];
-    document.querySelector('.contact p').textContent = content['contactText'];
-    document.querySelector('.contact-form label[for="name"]').textContent = content['formName'];
-    document.querySelector('.contact-form label[for="email"]').textContent = content['formEmail'];
-    document.querySelector('.contact-form label[for="message"]').textContent = content['formMessage'];
-    document.querySelector('.contact-form .submit-btn').textContent = content['formButton'];
-    
-    // Timeline
-    document.querySelector('.timeline-header h3').textContent = content['timelineTitle'];
-    
-    // Atualizar histórico de carreira
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach((item, index) => {
-        const titleElement = item.querySelector('h4');
-        const descElement = item.querySelector('p');
+        // Traduzir tags dos projetos
+        document.querySelectorAll('.project-tags .tag').forEach(tag => {
+            const tagId = tag.getAttribute('data-tag-id');
+            if (tagId && tagMappings[tagId] && content[tagMappings[tagId]]) {
+                tag.textContent = content[tagMappings[tagId]];
+            }
+        });
         
-        if (titleElement && descElement) {
-            titleElement.textContent = content[`job${index+1}Title`];
-            descElement.textContent = content[`job${index+1}Desc`];
-        }
-    });
-    
-    // Footer
-    document.querySelector('.copyright').innerHTML = content['footerText'];
-}
+        // Traduzir tags dos voluntariados
+        document.querySelectorAll('.volunteer-tags .tag').forEach(tag => {
+            const tagId = tag.getAttribute('data-tag-id');
+            if (tagId && tagMappings[tagId] && content[tagMappings[tagId]]) {
+                tag.textContent = content[tagMappings[tagId]];
+            }
+        });
+    }
 
-// Inicializar com o idioma padrão (português)
-document.addEventListener('DOMContentLoaded', function() {
+    // Função COMPLETA para mudar o idioma
+    function changeLanguage(lang) {
+        // Atualizar botões de idioma
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.classList.remove('active');
+            if (option.dataset.lang === lang) {
+                option.classList.add('active');
+            }
+        });
+
+        const content = translations[lang];
+
+        const formacaoElement = document.querySelector('[data-translate="FormacaoAcademica"]');
+        const facensElement = document.querySelector('[data-translate="facens"]');
+        const facensDescElement = document.querySelector('[data-translate="facensDesc"]');
+        const trailheadElement = document.querySelector('[data-translate="trailheadDesc"]');
+        
+        if (formacaoElement) formacaoElement.textContent = content['FormacaoAcademica'];
+        if (facensElement) facensElement.textContent = content['facens'];
+        if (facensDescElement) facensDescElement.textContent = content['facensDesc'];
+        if (trailheadElement) trailheadElement.textContent = content['trailheadDesc'];
+
+        
+        // Navegação
+        document.querySelector('nav ul li a[href="#home"]').textContent = content['home'];
+        document.querySelector('nav ul li a[href="#about"]').textContent = content['about'];
+        document.querySelector('nav ul li a[href="#projects"]').textContent = content['projects'];
+        document.querySelector('nav ul li a[href="#volunteer"]').textContent = content['volunteer'];
+        document.querySelector('nav ul li a[href="#contact"]').textContent = content['contact'];
+        
+        // Hero Section
+        document.querySelector('.hero-content h1').innerHTML = content['heroTitle'];
+        document.querySelector('.hero-content .typewriter').textContent = content['heroSubtitle'];
+        document.querySelector('.hero-content p:not(.typewriter)').textContent = content['heroText'];
+        document.querySelector('.hero-content .cta-button').textContent = content['heroButton'];
+        
+        // Sobre Mim
+        document.querySelector('.about .section-title').innerHTML = content['aboutTitle'];
+        document.querySelector('.about-text h3').textContent = content['aboutWho'];
+        document.querySelectorAll('.about-text p')[0].textContent = content['aboutText1'];
+        document.querySelectorAll('.about-text p')[1].textContent = content['aboutText2'];
+        document.querySelector('[data-translate="skillsTitle"]').textContent = content['skillsTitle'];
+        
+        // Projetos
+        document.querySelector('.projects .section-title').innerHTML = content['projectsTitle'];
+        
+        // Atualizar títulos e descrições dos projetos
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            const titleElement = card.querySelector('h3');
+            const descElement = card.querySelector('p');
+            
+            if (titleElement && descElement) {
+                titleElement.textContent = content[`project${index+1}Title`];
+                descElement.textContent = content[`project${index+1}Desc`];
+            }
+        });
+        
+        // Voluntariados
+        document.querySelector('.volunteer .section-title').innerHTML = content['volunteerTitle'];
+        
+        // Atualizar títulos e descrições dos voluntariados
+        const volunteerCards = document.querySelectorAll('.volunteer-card');
+        volunteerCards.forEach((card, index) => {
+            const titleElement = card.querySelector('h3');
+            const descElement = card.querySelector('p');
+            
+            if (titleElement && descElement) {
+                titleElement.textContent = content[`volunteer${index+1}Title`];
+                descElement.textContent = content[`volunteer${index+1}Desc`];
+            }
+        });
+        
+        // Contato
+        document.querySelector('.contact .section-title').innerHTML = content['contactTitle'];
+        document.querySelector('.contact p').textContent = content['contactText'];
+        document.querySelector('.contact-form label[for="name"]').textContent = content['formName'];
+        document.querySelector('.contact-form label[for="email"]').textContent = content['formEmail'];
+        document.querySelector('.contact-form label[for="message"]').textContent = content['formMessage'];
+        document.querySelector('.contact-form .submit-btn').textContent = content['formButton'];
+        
+        // Timeline
+        document.querySelector('.timeline-header h3').textContent = content['timelineTitle'];
+        
+        // Atualizar histórico de carreira
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            const titleElement = item.querySelector('h4');
+            const descElement = item.querySelector('p');
+            
+            if (titleElement && descElement) {
+                titleElement.textContent = content[`job${index+1}Title`];
+                descElement.textContent = content[`job${index+1}Desc`];
+            }
+        });
+        
+        // Footer
+        document.querySelector('.copyright').innerHTML = content['footerText'];
+        
+        // Traduzir as tags
+        translateTags(lang);
+    }
+
+    // Inicializar
+    initializeTags();
     changeLanguage('pt-BR');
     
     // Adicionar event listeners para os botões de idioma
@@ -209,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
             changeLanguage(lang);
         });
     });
-});
+
 
     // Event listeners para os botões de idioma
     document.querySelectorAll('.lang-option').forEach(option => {
@@ -359,11 +513,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.querySelector('.contact-form');
 
     contactForm.addEventListener('submit', (e) => {
-        // e.preventDefault(); ← REMOVA ISSO
 
         // Isso será substituído pelo envio real do FormSubmit
-        // alert('Obrigado pela sua mensagem! Entrarei em contato em breve.');
-        // contactForm.reset();
+        alert('Obrigado pela sua mensagem! Entrarei em contato em breve.');
+        contactForm.reset();
     });
 
     // Timeline de Empregos
