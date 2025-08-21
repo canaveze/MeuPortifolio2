@@ -10,7 +10,7 @@ const translations = {
         'heroTitle': 'Olá, eu sou a <span>Beatriz Canaveze</span>',
         'heroSubtitle': 'Estudante de Engenharia de Computação',
         'heroText': 'Apaixonada por tecnologia, estou sempre em busca de aprender para inovar.',
-        'heroButton': 'Baixar meu currículo',
+        'cvButton': 'Baixar meu currículo',
         'aboutTitle': 'Sobre <span>Mim</span>',
         'aboutWho': 'Quem sou eu?',
         'aboutText1': 'Estudante de Engenharia de Computação e apaixonada por tecnologia. Gosto de criar soluções práticas que façam a diferença no dia a dia das pessoas. Tenho experiência com desenvolvimento web, Power Platform, Salesforce e projetos de inovação.',
@@ -98,7 +98,7 @@ const translations = {
         'heroTitle': 'Hello, I am <span>Beatriz Canaveze</span>',
         'heroSubtitle': 'Computer Engineering Student',
         'heroText': 'Passionate about technology, I am always looking to learn in order to innovate.',
-        'heroButton': 'Download my curriculum ',
+        'cvButton': 'Download my resume',
         'aboutTitle': 'About <span>Me</span>',
         'aboutWho': 'Who am I?',
         'aboutText1': 'Computer Engineering student and technology enthusiast. I enjoy creating practical solutions that make a difference in people\'s daily lives. I have experience with web development, Power Platform, Salesforce and innovation projects.',
@@ -283,6 +283,23 @@ const translations = {
         document.querySelector('.hero-content .typewriter').textContent = content['heroSubtitle'];
         document.querySelector('.hero-content p:not(.typewriter)').textContent = content['heroText'];
         document.querySelector('.hero-content .cta-button').textContent = content['heroButton'];
+                                // Atualizar o botão de download do currículo
+                const cvButton = document.querySelector('.cta-button');
+                if (cvButton) {
+                    cvButton.textContent = content['cvButton'];
+                    
+                    // Configurar o link de download correto baseado no idioma
+                    const cvDownload = document.getElementById('cv-download');
+                    if (cvDownload) {
+                        if (lang === 'pt-BR') {
+                            cvDownload.href = './download/cv_pt.pdf';
+                            cvDownload.download = 'Curriculum_Beatriz_Canaveze.pdf';
+                        } else {
+                            cvDownload.href = './download/cv_en.pdf';
+                            cvDownload.download = 'Curriculum_Beatriz_Canaveze.pdf';
+                        }
+                    }
+                }
         
         // Sobre Mim
         document.querySelector('.about .section-title').innerHTML = content['aboutTitle'];
